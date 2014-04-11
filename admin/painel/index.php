@@ -4,6 +4,19 @@ require_once "../autoload.php";
 
 Logar::verificaLogin();
 
+
+/* DESLOGAR DO SISTEMA */
+if(isset( $_GET['ac']) ) {
+  if($_GET['ac'] == 'logout') {
+    if(isset($_SESSION['logado'])){
+      //unset($_SESSION['logado']);
+      session_destroy();
+      header("Location: ../index.php");
+    }
+  }
+}/* GET[AC] */
+
+
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +51,12 @@ i {
   font-size:18px;
 }
 
-html, body {height:100%;}
+html, body, .container, .content {
+    height: 100%;
+}
+
+#container {margin}
+
 footer {
   margin-top:20px;
   padding-top:20px;
@@ -63,7 +81,7 @@ footer {
   border-radius: 10px;
 }
 footer{
-
+position: relative;
   float: left;
   clear: both;
   bottom:0;
@@ -83,7 +101,7 @@ footer{
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="icon-toggle"></span>
       </button>
-      <a class="navbar-brand" href="#">Control Panel</a>
+      <a class="navbar-brand glyphicon glyphicon-home " href="#">  Painel </a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
@@ -91,7 +109,7 @@ footer{
         <li class="dropdown">
           <a href="#">
             <i class="glyphicon glyphicon-user "></i><?php  echo '  Olá '. $_SESSION['nome_adm'];  ?></a>
-            <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+            <li><a href="?ac=logout"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
 
         </li>
       </ul>
@@ -111,20 +129,20 @@ footer{
       <hr>
 
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#"><i class="glyphicon glyphicon-floppy-disk"></i> Cadastrar Categoria</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-floppy-disk"></i> Cadastrar Post</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-floppy-disk"></i> Cadastrar Publicidade </a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-floppy-disk"></i> Cadastrar Administrador</a></li>
+        <li><a href="?p=cadastrar_categoria"><i class="glyphicon glyphicon-floppy-disk"></i> Cadastrar Categoria</a></li>
+        <li><a href="?p=cadastrar_post"><i class="glyphicon glyphicon-floppy-disk"></i> Cadastrar Post</a></li>
+        <li><a href="?p=cadastrar_publicidade"><i class="glyphicon glyphicon-floppy-disk"></i> Cadastrar Publicidade </a></li>
+        <li><a href="?p=cadastrar_administrador"><i class="glyphicon glyphicon-floppy-disk"></i> Cadastrar Administrador</a></li>
         <hr>
-        <li><a href="#"><i class="glyphicon glyphicon-pencil"></i> Alterar Categoria</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-pencil"></i> Alterar Post</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-pencil"></i> Alterar Publicidade </a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-pencil"></i> Alterar Administrador</a></li>
+        <li><a href="?p=alterar_categoria"><i class="glyphicon glyphicon-pencil"></i> Alterar Categoria</a></li>
+        <li><a href="?p=alterar_post"><i class="glyphicon glyphicon-pencil"></i> Alterar Post</a></li>
+        <li><a href="?p=alterar_publicidade"><i class="glyphicon glyphicon-pencil"></i> Alterar Publicidade </a></li>
+        <li><a href="?p=alterar_administrador"><i class="glyphicon glyphicon-pencil"></i> Alterar Administrador</a></li>
         <hr>
-        <li><a href="#"><i class="glyphicon glyphicon-remove"></i> Deletar Categoria</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-remove"></i> Deletar Post</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-remove"></i> Deletar Publicidade </a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-remove"></i> Deletar Administrador</a></li>
+        <li><a href="?p=deletar_categoria"><i class="glyphicon glyphicon-remove"></i> Deletar Categoria</a></li>
+        <li><a href="?p=deletar_post"><i class="glyphicon glyphicon-remove"></i> Deletar Post</a></li>
+        <li><a href="?p=deletar_publicidade"><i class="glyphicon glyphicon-remove"></i> Deletar Publicidade </a></li>
+        <li><a href="?p=deletar_administrador"><i class="glyphicon glyphicon-remove"></i> Deletar Administrador</a></li>
       </ul>
 
       <hr>
@@ -148,7 +166,15 @@ footer{
 
               <div class="panel panel-default">
                   <div class="panel-heading"><h4>Processing Status</h4></div>
-                    <div>conteudo</div>
+                    <div id="conteudo">
+                      <?php
+
+                      if(isset($_GET['p'])) {
+                          Url::mudaUrl($_GET['p']);
+                      }
+
+                      ?>
+                    </div>
 
 
 
@@ -170,12 +196,8 @@ footer{
 
 
 </div><!--/container-->
-<!-- /Main -->
-
 
 <footer class="text-center">Area Administrativa - <a href="#"><strong> Noticias.com </strong></a></footer>
-
-
 
     </body>
 </html>
