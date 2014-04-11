@@ -1,5 +1,6 @@
 <?php
 session_start();
+ header ('Content-type: text/html; charset=UTF-8');
 require_once "../autoload.php";
 
 Logar::verificaLogin();
@@ -101,7 +102,7 @@ position: relative;
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="icon-toggle"></span>
       </button>
-      <a class="navbar-brand glyphicon glyphicon-home " href="#">  Painel </a>
+      <a class="navbar-brand glyphicon glyphicon-home " href="index.php">  Painel </a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
@@ -165,7 +166,7 @@ position: relative;
               <hr>-->
 
               <div class="panel panel-default">
-                  <div class="panel-heading"><h4>Processing Status</h4></div>
+                  <div class="panel-heading"><h4><?php  echo date('d/m/Y'); ?></h4></div>
                     <div id="conteudo">
                       <?php
 
