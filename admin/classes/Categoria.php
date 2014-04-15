@@ -26,8 +26,13 @@ class Categoria extends Abstrata implements iCRUD{
 	     $this->categoria = $categoria;
 	}
 
-	public function alterar() {
+	public function listar() {
+		parent::$tabela = "categoria";
+		return parent::listar();
+	}
 
+	public function alterar() {
+		echo 'ola mundo';
 	}
 
 	public function cadastrar() {
@@ -49,14 +54,12 @@ class Categoria extends Abstrata implements iCRUD{
 			$cadastrar->bindValue("posicao", $this->getPosicao());
 			$cadastrar->execute();
 
-			 if ($cadastrar->rowCount() == 1):
-                echo '<p class="alert alert-success">Categoria Cadastrada com sucesso !</p>';
-            else:
-                echo '<p class="alert alert-danger">Erro ao cadastrar categoria !</p>';
-            endif;
+				 if ($cadastrar->rowCount() == 1){
+	                echo '<p class="alert alert-success">Categoria Cadastrada com sucesso !</p>';
+	           	} else {
+	                echo '<p class="alert alert-danger">Erro ao cadastrar categoria !</p>';
+	            }
 			}
-
-
 
 		} catch (PDOException $e) {
 			echo 'Erro: '.$e->getMessage();

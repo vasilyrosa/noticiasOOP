@@ -5,7 +5,9 @@ set_include_path(
 	 "classes/".PATH_SEPARATOR
 	."../classes/".PATH_SEPARATOR
 	."interfaces/".PATH_SEPARATOR
-	."../interfaces/"
+	."../interfaces/".PATH_SEPARATOR
+	."classes/lib/".PATH_SEPARATOR
+	."../classes/lib/"
 	);
 
 
