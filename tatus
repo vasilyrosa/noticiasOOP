@@ -1,0 +1,42 @@
+[33mcommit 40f51efa506e5d0c86d8cf0ef5c747388882a897[m
+Author: vasilyrosa <everton_330@hotmail.com>
+Date:   Tue Apr 15 12:21:36 2014 -0300
+
+    termino do menu cadastrar post
+
+[33mcommit b73b1b427bcb1ffda7da70eba43e1f8ec1b3ee21[m
+Merge: dd6d35d 25dc5d8
+Author: vasilyrosa <everton_330@hotmail.com>
+Date:   Fri Apr 11 15:07:59 2014 -0300
+
+    Merge branch 'master' of https://github.com/vasilyrosa/noticiasOOP
+
+[33mcommit dd6d35d5c2795c037e4fd7adb60a897c4612979c[m
+Author: vasilyrosa <everton_330@hotmail.com>
+Date:   Fri Apr 11 15:07:12 2014 -0300
+
+    criando index principal
+
+[33mcommit 4961b0510f4b7b2f2f794b529d91b19b9462d599[m
+Author: vasilyrosa <everton_330@hotmail.com>
+Date:   Fri Apr 11 15:02:35 2014 -0300
+
+    termino do menu cadastrar categoria
+
+[33mcommit 25dc5d88498eb027055b6c6c7e6f80036a227e00[m
+Author: vasilyrosa <everton_330@hotmail.com>
+Date:   Fri Apr 11 13:09:54 2014 -0300
+
+    Create README.md
+
+[33mcommit 9ce25abc091a01cbad397028a22d87b062ebeb67[m
+Author: vasilyrosa <everton_330@hotmail.com>
+Date:   Fri Apr 11 13:08:09 2014 -0300
+
+    configuracao da page 404 do admin
+
+[33mcommit 221e6bc1cb2634a77ffc7dac2de00483180f239d[m
+Author: vasilyrosa <everton_330@hotmail.com>
+Date:   Fri Apr 11 11:31:59 2014 -0300
+
+    esqueleto do projeto noticias OOP

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class Categoria extends Abstrata implements iCRUD{
 
@@ -26,13 +26,45 @@ class Categoria extends Abstrata implements iCRUD{
 	     $this->categoria = $categoria;
 	}
 
+	public function cat_Id() {
+
+		return parent::pegarId('categoria', 'categoria_id', $this->getCategoria());
+	}
+
 	public function listar() {
 		parent::$tabela = "categoria";
 		return parent::listar();
 	}
 
+	public function listarCategoria() {
+		parent::$tabela = "categoria";
+		parent::$existeParametros = true;
+		$this->setParametros(" INNER JOIN posicao_destaque ON categoria.categoria_posicao_destaque = posicao_destaque.posicao_id");
+		 return parent::listar();
+	}
+
+
 	public function alterar() {
-		echo 'ola mundo';
+		$pdo = parent::getInstance();
+
+		try {
+
+			$alterar = $pdo->prepare('UPDATE categoria SET categoria_nome = :nome,
+				categoria_posicao_destaque = :destaque WHERE categoria_id = :id');
+			$alterar->bindValue(':nome', $this->getCategoria());
+			$alterar->bindValue(':destaque', $this->getPosicao());
+			$alterar->bindValue(':id', $this->getId());
+			$alterar->execute();
+
+
+			if($alterar->rowCount() == 1){
+				echo '<p class="alert alert-success">Categoria alterada com sucesso !</p>';
+			}else {
+				echo '<p class="alert alert-danger">Erro ao alterar categoria !</p>';
+			}
+		} catch (PDOException $e) {
+			echo 'Erro : '.$e->getMessage();
+		}
 	}
 
 	public function cadastrar() {
@@ -40,11 +72,7 @@ class Categoria extends Abstrata implements iCRUD{
 
 		try {
 
-			parent::$tabela = "categoria";
-			parent::$campoTabela = 'categoria_nome';
-			parent::$campoEscolhido = $this->getCategoria();
-
-			if(parent::existeCadastro()) {
+			if(parent::existeCadastro('categoria', 'categoria_nome', $this->getCategoria())) {
 				echo '<p class="alert alert-danger">Essa categoria já existe !</p>';
 			} else {
 

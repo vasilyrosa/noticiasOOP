@@ -21,7 +21,7 @@ if(isset( $_GET['ac']) ) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">

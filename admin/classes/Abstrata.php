@@ -73,20 +73,23 @@ abstract class Abstrata extends Conexao {
         }
     }
 
-    protected function existeCadastro() {
+    protected function existeCadastro($tabela, $campoTabela, $campoEscolhido) {
         $pdo = Conexao::getInstance();
 
+        self::$tabela = $tabela;
+        self::$campoTabela = $campoTabela;
+        self::$campoEscolhido = $campoEscolhido;
         try {
             $verifica = $pdo->prepare("SELECT * FROM " . self::$tabela . " WHERE " . self::$campoTabela .
                     " = :campoescolhido");
             $verifica->bindValue(":campoescolhido", self::$campoEscolhido);
             $verifica->execute();
 
-            if ($verifica->rowCount() > 0):
+            if ($verifica->rowCount() > 0){
                 return true;
-            else:
+            }else{
                 return false;
-            endif;
+            }
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage();
         }
@@ -98,8 +101,12 @@ abstract class Abstrata extends Conexao {
         endif;
     }
 
-    protected function pegarId() {
+    protected function pegarId($tabela, $campoTabela, $campoEscolhido) {
         $pdo = Conexao::getInstance();
+
+        self::$tabela = $tabela;
+        self::$campoTabela = $campoTabela;
+        self::$campoEscolhido = $campoEscolhido;
         try {
             $pegarId = $pdo->prepare("SELECT * FROM ".self::$tabela." WHERE " . self::$campoTabela . "= :campoEscolhido");
             $pegarId->bindValue(":campoEscolhido", self::$campoEscolhido);

@@ -1,21 +1,5 @@
- <?php
+<?php
  header ('Content-type: text/html; charset=UTF-8');
-if(isset($_POST['cadastrar'])) {
-	$categoria = new Categoria();
-	$categoria->obrigatorio('categoria', $_POST['categoria']);
-	$categoria->obrigatorio('posição', $_POST['posicao']);
-
-	$erro =  $categoria->getErro();
-
- if(!isset($erro)){
- 	echo $categoria->setCategoria($_POST['categoria']);
- 	$categoria->setPosicao($_POST['posicao']);
- 	$categoria->cadastrar();
- } else{
- 	echo $erro;
- }
-}
-
  ?>
 
  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -28,42 +12,66 @@ if(isset($_POST['cadastrar'])) {
 .clickable{
     cursor: pointer;
 }
-.panel-body{height: 210px;}
+
+label{display: block}
+.panel-body{height: 330px; width: 800px;}
 
 .panel-heading span {
 	margin-top: -20px;
 	font-size: 15px;
-}    </style>
+}
+
+  </style>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    </script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-</head>
-<body>
+ <body>
 <div class="container">
     <div class="row">
 		<div class="col-md-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">CADASTRAR CATEGORIA</h3>
+					<h3 class="panel-title">ALTERAR POST</h3>
 					<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 				</div>
 				<div class="panel-body">
 
-					<div class="form">
+<div class="form">
 
-		<form action=""method="post" class="form">
-			<label for="categoria">Categoria: </label>
-			<input type="text" name="categoria"  class="form-control" >
-			<br>
-			<label for="posicao_destaque" >Posição Destaque</label>
-			<select name="posicao" class="form-control">
-				<option value="" seletcted="selected">Sem posição</option>
-				<option value="1">Destaque</option>
-				<option value="2">Inferior direito</option>
-				<option value="3">Superior Esquerdo</option>
-			</select>
-			<br />
-			<input type="submit" name="cadastrar" value="Cadastrar" class="btn btn-primary">
+		<form action=""method="post" class="form-inline" enctype="multipart/form-data">
+
+			<table class="table table-bordered" border="1" style="width: 600px">
+
+					<tr>
+						<th>Titulo</th>
+						<th>Categoria</th>
+						<th>Data</th>
+						<th>Autor</th>
+						<th>Alterar</th>
+					</tr>
+
+
+				<?php
+				$categoria = new Post;
+				$dados = $categoria->listarPost();
+
+
+				foreach ($dados as  $value) {
+					?>
+					<tr>
+						<td><?php  echo $value->post_titulo; ?></td>
+						<td><?php  echo $value->categoria_nome; ?></td>
+						<td><?php  echo date('d/m/Y H:i:s', strtotime($value->post_data)); ?></td>
+						<td><?php  echo $value->adm_nome; ?></td>
+						<td style="text-align: center">
+							<a href="?p=update/update_post&id=<?php echo $value->post_id ?>" class="glyphicon glyphicon-pencil"></a>
+						</td>
+					</tr>
+
+				<?php } ?>
+
+
+			</table>
+
 		</form>
 </div>
 				</div>

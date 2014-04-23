@@ -1,56 +1,5 @@
  <?php
  header ('Content-type: text/html; charset=UTF-8');
-
-if(isset($_POST['cadastrar'])) {
-
-
-	$post = new Post;
-//var_dump($_POST['categoria']);
-	/* Instanciando o método obrigatório para validar formulário */
-	$post->obrigatorio("titulo", $_POST['titulo']);
-	$post->obrigatorio("categoria", $_POST['categoria']);
-	$post->obrigatorio("foto", $_FILES['foto']['name']);
-	$post->obrigatorio("conteudo", $_POST['editor']);
-	$erro =  $post->getErro();
-
-	/* Pegar id do administrador */
-	$post->setAutor( $_SESSION['nome_adm'] );
-	$id_adm = $post->adm_id();
-
-	 /* Tratamento de foto com WideImage */
-	 $foto = $_FILES['foto']['name'];
-	 $temp = $_FILES['foto']['tmp_name'];
-	 @$explode = end(explode('.', $foto));
-	 $novaFoto = uniqid().'.'.$explode;
-
-		/*  pegando dados do formulário via post*/
-		if(!isset($erro)){
-
-
-		$resize =  WideImage::load($temp);
-		$redimensionar = $resize->resize('288','163','fill');
-		$redimensionar->saveToFile('../../foto/'.$novaFoto);
-
-		if($redimensionar->isValid()){
-		 	$post->setTitulo(  strip_tags(filter_input(INPUT_POST, 'titulo')));
-		 	$post->setCategoria(strip_tags(filter_input(INPUT_POST, 'categoria')));
-		 	$post->setFoto(	   'foto/'.$novaFoto);
-		 	$post->setData(     date("Y-m-d H:i:s"));
-		 	$post->setAutor(    $id_adm->adm_id);
-		 	$post->setConteudo( strip_tags(filter_input(INPUT_POST, 'editor')));
-		 	$post->cadastrar();
-
-		 	} else {
-			echo $erro = '<p class="alert alert-danger">Nehuma foto foi selecionada !</p>';
-			}
-
-	 	} else{
-	 		echo $erro;
-	 			//unlink('../../foto/'.$novaFoto);
-		 }
-
-}
-
  ?>
 
  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -104,7 +53,7 @@ label{display: block}
 		<div class="col-md-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">CADASTRAR POST</h3>
+					<h3 class="panel-title">ALTERAR POST</h3>
 					<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 				</div>
 				<div class="panel-body">
@@ -124,8 +73,6 @@ label{display: block}
 				foreach ($dados as  $value) {  ?>
 					<option value="<?php  echo $value->categoria_id; ?>" selected="">"<?php  echo $value->categoria_nome; ?>"</option>
 			  <?php  } ?>
-
-			<option value="" selected="selected" disabled="disabled">Categoria</option>
 			<hr>
 			<label for="foto">Foto: </label>
 			<input type="file" name="foto"  class="form-control" >
@@ -137,8 +84,7 @@ label{display: block}
 
 
 			<br>
-			<input type="submit" name="cadastrar" value="Cadastrar" class="btn btn-primary">
-			<input type="reset" name="Limpar" value="Limpar" class="btn btn-primary">
+			<input type="submit" name="alterar" value="Alterar" class="btn btn-warning">
 		</form>
 </div>
 				</div>
@@ -159,5 +105,3 @@ $(document).on('click', '.panel-heading span.clickable', function(e){
 		$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
 	}
 })</script>
-
-

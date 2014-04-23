@@ -1,20 +1,29 @@
  <?php
  header ('Content-type: text/html; charset=UTF-8');
-if(isset($_POST['cadastrar'])) {
-	$categoria = new Categoria();
-	$categoria->obrigatorio('categoria', $_POST['categoria']);
-	$categoria->obrigatorio('posição', $_POST['posicao']);
 
-	$erro =  $categoria->getErro();
+if(isset($_POST['cadastrar'])) {
+
+ $admin = new Administrador;
+
+ $admin->obrigatorio("nome", $_POST['nome']);
+ $admin->obrigatorio("email", $_POST['email']);
+ $admin->obrigatorio("usuario", $_POST['usuario']);
+ $admin->obrigatorio("senha", $_POST['senha']);
+
+ $erro =  $admin->getErro();
 
  if(!isset($erro)){
- 	echo $categoria->setCategoria($_POST['categoria']);
- 	$categoria->setPosicao($_POST['posicao']);
- 	$categoria->cadastrar();
- } else{
+ 	$admin->setNome(strip_tags(filter_input(INPUT_POST, 'nome')));
+ 	$admin->setEmail(strip_tags(filter_input(INPUT_POST, 'email')));
+ 	$admin->setLogin(strip_tags(filter_input(INPUT_POST, 'usuario')));
+ 	$admin->setSenha(strip_tags(filter_input(INPUT_POST, 'senha')));
+ 	$admin->cadastrar();
+ } else {
  	echo $erro;
  }
-}
+
+
+}//isset
 
  ?>
 
@@ -28,42 +37,49 @@ if(isset($_POST['cadastrar'])) {
 .clickable{
     cursor: pointer;
 }
-.panel-body{height: 210px;}
+
+label{display: block}
+.panel-body{height: 330px; width: 800px;}
 
 .panel-heading span {
 	margin-top: -20px;
 	font-size: 15px;
-}    </style>
+}
+
+  </style>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    </script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-</head>
-<body>
+ <body>
 <div class="container">
     <div class="row">
 		<div class="col-md-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">CADASTRAR CATEGORIA</h3>
+					<h3 class="panel-title">CADASTRAR ADMINISTRADOR</h3>
 					<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 				</div>
 				<div class="panel-body">
 
-					<div class="form">
+<div class="form">
 
-		<form action=""method="post" class="form">
-			<label for="categoria">Categoria: </label>
-			<input type="text" name="categoria"  class="form-control" >
+		<form action=""method="post" class="form-inline" enctype="multipart/form-data">
+
+			<label for="nome">Nome: </label>
+			<input style="width: 300px; "type="text" name="nome"  class="form-control" maxlength="100"/>
+
+			<label for="email">E-mail:</label>
+			<input style="width: 300px; "type="email" name="email"  class="form-control" maxlength="80"/>
+
+			<label for="usuario">Usuário:</label>
+			<input type="text" name="usuario"  class="form-control" maxlength="80">
+
+			<label for="senha">Senha:</label>
+			<input type="password" name="senha"  class="form-control" maxlength="80">
 			<br>
-			<label for="posicao_destaque" >Posição Destaque</label>
-			<select name="posicao" class="form-control">
-				<option value="" seletcted="selected">Sem posição</option>
-				<option value="1">Destaque</option>
-				<option value="2">Inferior direito</option>
-				<option value="3">Superior Esquerdo</option>
-			</select>
 			<br />
+			<label for="cadastrar"></label>
 			<input type="submit" name="cadastrar" value="Cadastrar" class="btn btn-primary">
+
 		</form>
 </div>
 				</div>

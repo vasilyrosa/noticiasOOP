@@ -70,16 +70,20 @@ class Post extends Abstrata implements iCRUD {
 	}
 	/* métodos funcionais */
 
-	public function alterar() {
+	public function alterar(){}
 
+	public function listarPost() {
+		parent::$tabela = "post";
+		parent::$existeParametros = true;
+		$this->setParametros(" INNER JOIN categoria INNER JOIN administrador ON
+												post.post_categoria = categoria.categoria_id  AND
+												post.post_autor = administrador.adm_id");
+		 return parent::listar();
 	}
 
-	public function pegarId() {
+	public function adm_Id() {
 
-		parent::$tabela = 'administrador';
-		parent::$campoTabela = 'adm_nome';
-		parent::$campoEscolhido = $this->getAutor();
-		return parent::pegarId();
+		return parent::pegarId('administrador', 'adm_nome', $this->getAutor());
 	}
 
 	public function cadastrar() {
@@ -87,11 +91,7 @@ class Post extends Abstrata implements iCRUD {
 
 		try {
 
-			parent::$tabela = "post";
-			parent::$campoTabela = 'post_titulo';
-			parent::$campoEscolhido = $this->getTitulo();
-
-			if(parent::existeCadastro()) {
+			if(parent::existeCadastro('post','post_titulo', $this->getTitulo())) {
 				echo '<p class="alert alert-danger">Esse post já existe !</p>';
 			} else {
 
