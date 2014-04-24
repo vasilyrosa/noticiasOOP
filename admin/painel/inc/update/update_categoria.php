@@ -90,7 +90,8 @@ label{display: block}
 
 					foreach ($dadosPosi as $key => $value) { ?>
 				<option value="<?php echo $value->posicao_id; ?>"
-				 <?php echo $value->posicao_id == $dados->categoria_posicao_destaque ? "selected ='selected'" : '' ?> ><?php echo $value->posicao_nome; ?></option>
+				 <?php echo $value->posicao_id == $dados->categoria_posicao_destaque ? "selected ='selected'" : '' ?> ><?php echo $value->posicao_nome; ?>
+				</option>
 
 				<?php } ?>
 			</select>

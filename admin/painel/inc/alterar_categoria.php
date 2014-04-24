@@ -1,5 +1,7 @@
  <?php
  header ('Content-type: text/html; charset=UTF-8');
+include_once '../classes/lib/Pager.php';
+include_once '../classes/lib/Sliding.php';
  ?>
 
  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -51,9 +53,19 @@ label{display: block}
 				<?php
 				$categoria = new Categoria;
 				$dados = $categoria->listarCategoria();
-				//var_dump($dados);
 
-				foreach ($dados as  $value) {
+				$params = array(
+				    'mode'       => 'sliding',
+				    'perPage'    => 10,
+				    'delta'      => 4,
+				    'itemData'   => $dados
+				);
+
+				@$pager = & Pager::factory($params);
+				$data  = $pager->getPageData();
+
+
+				foreach ($data as  $value) {
 					?>
 					<tr>
 						<td><?php  echo $value->categoria_nome; ?></td>
@@ -64,8 +76,14 @@ label{display: block}
 					</tr>
 
 				<?php } ?>
+					<tr>
+						<td colspan="5" align="center" >
 
-
+							<?php  $links = $pager->getLinks();
+									echo $links['all'];
+							 ?>
+						</td>
+					</tr>
 			</table>
 
 		</form>

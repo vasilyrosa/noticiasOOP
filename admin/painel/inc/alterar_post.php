@@ -1,5 +1,10 @@
 <?php
  header ('Content-type: text/html; charset=UTF-8');
+
+include_once '../classes/lib/Pager.php';
+include_once '../classes/lib/Sliding.php';
+
+
  ?>
 
  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +44,7 @@ label{display: block}
 
 		<form action=""method="post" class="form-inline" enctype="multipart/form-data">
 
-			<table class="table table-bordered" border="1" style="width: 600px">
+			<table class="table table-bordered" border="1" style="width: 700px">
 
 					<tr>
 						<th>Titulo</th>
@@ -53,9 +58,16 @@ label{display: block}
 				<?php
 				$categoria = new Post;
 				$dados = $categoria->listarPost();
+				$params = array(
+				    'mode'       => 'sliding',
+				    'perPage'    => 5,
+				    'delta'      => 4,
+				    'itemData'   => $dados
+				);
 
-
-				foreach ($dados as  $value) {
+				@$pager = & Pager::factory($params);
+				$data  = $pager->getPageData();
+				foreach ($data as  $value) {
 					?>
 					<tr>
 						<td><?php  echo $value->post_titulo; ?></td>
@@ -68,7 +80,14 @@ label{display: block}
 					</tr>
 
 				<?php } ?>
+		<tr>
+			<td colspan="5" align="center" >
 
+				<?php  $links = $pager->getLinks();
+						echo $links['all'];
+				 ?>
+			</td>
+		</tr>
 
 			</table>
 

@@ -70,7 +70,38 @@ class Post extends Abstrata implements iCRUD {
 	}
 	/* métodos funcionais */
 
-	public function alterar(){}
+	public function alterar() {
+		$pdo = parent::getInstance();
+
+		try {
+
+			$alterar = $pdo->prepare('UPDATE post SET post_titulo    = :titulo,
+													  post_categoria = :categoria,
+													  post_foto      = :foto,
+													  post_data      = :data,
+													  post_autor     = :autor,
+													  post_conteudo  = :conteudo
+				WHERE post_id = :id');
+			$alterar->bindValue(':titulo', 	 $this->getTitulo());
+			$alterar->bindValue(':categoria',$this->getCategoria());
+			$alterar->bindValue(':foto',	 $this->getFoto());
+			$alterar->bindValue(':data', 	 $this->getData());
+			$alterar->bindValue(':autor', 	 $this->getAutor());
+			$alterar->bindValue(':conteudo', $this->getConteudo());
+			$alterar->bindValue(':id', 		 $this->getId());
+			$alterar->execute();
+
+
+			if($alterar->rowCount() == 1){
+				echo '<p class="alert alert-success">Post alterado com sucesso !</p>';
+			}else {
+				echo '<p class="alert alert-danger">Erro ao alterar Post !</p>';
+			}
+		} catch (PDOException $e) {
+			echo 'Erro : '.$e->getMessage();
+		}
+	}
+
 
 	public function listarPost() {
 		parent::$tabela = "post";
@@ -84,6 +115,11 @@ class Post extends Abstrata implements iCRUD {
 	public function adm_Id() {
 
 		return parent::pegarId('administrador', 'adm_nome', $this->getAutor());
+	}
+
+	public function post_Id() {
+
+		return parent::pegarId('post', 'post_id', $this->getId());
 	}
 
 	public function cadastrar() {
