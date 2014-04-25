@@ -30,7 +30,7 @@ if(isset($_POST['cadastrar'])) {
 				if($redimensionar->isValid()){
 			 	$publicidade->setTitulo( strip_tags(filter_input(INPUT_POST, 'titulo')));
 			 	$publicidade->setCaminho('publicidade/'.$novaFoto);
-			 	$publicidade->setStatus('ativo');
+			 	$publicidade->setStatus('inativo');
 			 	$publicidade->cadastrar();
 				 } else {
 					echo $erro = '<p class="alert alert-danger">Nehuma foto foi selecionada !</p>';

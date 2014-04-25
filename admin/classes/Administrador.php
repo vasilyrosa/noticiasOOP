@@ -48,9 +48,49 @@ class Administrador extends Abstrata implements iCRUD {
 	     $this->senha = $senha;
 	}
 
-	public function alterar() {
-
+	public function listar() {
+		parent::$tabela = "administrador";
+		return parent::listar();
 	}
+
+	public function alterar() {
+		$pdo = Conexao::getInstance();
+
+		try {
+
+			/*if(parent::existeCadastro('administrador', 'adm_login', $this->getLogin())) {
+				echo ('<p class="alert alert-danger">Já existe um usuário com este Login !</p>');
+			} else if(parent::existeCadastro('administrador', 'adm_email', $this->getEmail())){
+				echo ('<p class="alert alert-danger">Já existe um usuário com este Email!</p>');
+			} else if(parent::existeCadastro('administrador', 'adm_nome', $this->getNome())){
+				echo ('<p class="alert alert-danger">Já existe um usuário com este Nome!</p>');
+			}else {*/
+
+			$alterar = $pdo->prepare('UPDATE administrador SET adm_nome = :nome,
+															   adm_email = :email,
+															   adm_login = :login,
+															   adm_senha = :senha
+															   WHERE adm_id = :id');
+			$alterar->bindValue(':nome', $this->getNome());
+			$alterar->bindValue(':email', $this->getEmail());
+			$alterar->bindValue(':login', $this->getLogin());
+			$alterar->bindValue(':senha', $this->getSenha());
+			$alterar->bindValue(':id', $this->getId());
+			$alterar->execute();
+
+
+			if($alterar->rowCount() == 1){
+				echo '<p class="alert alert-success"><strong>Adminsitrador</strong> alterado com sucesso !</p>';
+			}else {
+				echo '<p class="alert alert-danger">Erro ao alterar <strong>Adminsitrador</strong>!</p>';
+			}
+			//}
+
+		} catch (PDOException $e) {
+			echo 'Erro: '.$e->getMessage();
+		}
+}
+
 
 	public function cadastrar() {
 		$pdo = Conexao::getInstance();
@@ -88,4 +128,4 @@ class Administrador extends Abstrata implements iCRUD {
 			echo 'Erro: '.$e->getMessage();
 		}
 	}
-}
+}//endclass

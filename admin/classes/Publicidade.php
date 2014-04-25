@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class Publicidade extends Abstrata implements iCRUD {
 
@@ -37,8 +37,63 @@ class Publicidade extends Abstrata implements iCRUD {
 	     $this->status = $status;
 	}
 
-	public function alterar() {
+	public function listar() {
+		parent::$tabela = "publicidade";
+		return parent::listar();
+	}
 
+	public function pub_Id() {
+
+		return parent::pegarId('publicidade', 'publicidade_id', $this->getId());
+	}
+
+	public function alteraStatus(){
+		$pdo = parent::getInstance();
+
+		try {
+
+			$alterar = $pdo->prepare('UPDATE publicidade SET   publicidade_status = :status
+															   WHERE publicidade_id = :id');
+
+			$alterar->bindValue(':status', 'inativo');
+			$alterar->bindValue(':id', $this->getId());
+			$alterar->execute();
+
+
+			if($alterar->rowCount() == 1){
+				echo '<p class="alert alert-success"><strong>Status</strong> alterado com sucesso !</p>';
+			}else {
+				echo '<p class="alert alert-danger">Erro ao alterar <strong>Status</strong>!</p>';
+			}
+		} catch (PDOException $e) {
+			echo 'Erro : '.$e->getMessage();
+		}
+	}
+
+	public function alterar() {
+		$pdo = parent::getInstance();
+
+		try {
+
+			$alterar = $pdo->prepare('UPDATE publicidade SET  publicidade_titulo = :titulo,
+															  publicidade_caminho = :caminho,
+															  publicidade_status = :status
+															   WHERE publicidade_id = :id');
+			$alterar->bindValue(':titulo', $this->getTitulo());
+			$alterar->bindValue(':caminho', $this->getCaminho());
+			$alterar->bindValue(':status', $this->getStatus());
+			$alterar->bindValue(':id', $this->getId());
+			$alterar->execute();
+
+
+			if($alterar->rowCount() == 1){
+				echo '<p class="alert alert-success"><strong>Publicidade</strong> alterada com sucesso !</p>';
+			}else {
+				echo '<p class="alert alert-danger">Erro ao alterar <strong>Publicidade</strong>!</p>';
+			}
+		} catch (PDOException $e) {
+			echo 'Erro : '.$e->getMessage();
+		}
 	}
 
 	public function cadastrar() {
@@ -46,11 +101,7 @@ class Publicidade extends Abstrata implements iCRUD {
 
 		try {
 
-			parent::$tabela = "publicidade";
-			parent::$campoTabela = 'publicidade_titulo';
-			parent::$campoEscolhido = $this->getTitulo();
-
-			if(parent::existeCadastro()) {
+			if(parent::existeCadastro('publicidade', 'publicidade_titulo', $this->getTitulo())) {
 				echo '<p class="alert alert-danger">Essa publicidade já existe !</p>';
 			} else {
 

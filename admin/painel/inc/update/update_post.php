@@ -29,6 +29,8 @@ if(!isset($erro)){
 		//caso nao esteja vazio cadastra nova foto
 		 $foto = $_FILES['foto']['name'];
 		 $temp = $_FILES['foto']['tmp_name'];
+
+		 /* explodir para pegar a extensao da foto */
 		 @$explode = end(explode('.', $foto));
 		 $novaFoto = uniqid().'.'.$explode;
 
