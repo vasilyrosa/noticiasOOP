@@ -53,6 +53,12 @@ class Administrador extends Abstrata implements iCRUD {
 		return parent::listar();
 	}
 
+	public function deletar() {
+		parent::$tabela = "administrador";
+		parent::$campoTabela = "adm_id";
+		return parent::deletar();
+	}
+
 	public function alterar() {
 		$pdo = Conexao::getInstance();
 

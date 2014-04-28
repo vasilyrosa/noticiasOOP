@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
  header ('Content-type: text/html; charset=UTF-8');
 require_once "../autoload.php";
@@ -110,7 +110,7 @@ position: relative;
 
         <li class="dropdown">
           <a href="#">
-            <i class="glyphicon glyphicon-user "></i><?php  echo '  Olá '. $_SESSION['nome_adm'];  ?></a>
+            <i class="glyphicon glyphicon-user "></i><?php  echo '  Olรก '. $_SESSION['nome_adm'];  ?></a>
             <li><a href="?ac=logout"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
 
         </li>
@@ -173,6 +173,9 @@ position: relative;
 
                       if(isset($_GET['p'])) {
                           Url::mudaUrl($_GET['p']);
+                      }else{
+                       // include_once "inc/ultimos_post.php";
+                        echo 'Seja Bem vindo a página administrativa!';
                       }
 
                       ?>

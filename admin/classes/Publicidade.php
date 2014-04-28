@@ -47,6 +47,12 @@ class Publicidade extends Abstrata implements iCRUD {
 		return parent::pegarId('publicidade', 'publicidade_id', $this->getId());
 	}
 
+	public function deletar() {
+		parent::$tabela = "publicidade";
+		parent::$campoTabela = "publicidade_id";
+		return parent::deletar();
+	}
+
 	public function alteraStatus(){
 		$pdo = parent::getInstance();
 

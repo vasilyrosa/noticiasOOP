@@ -122,6 +122,12 @@ class Post extends Abstrata implements iCRUD {
 		return parent::pegarId('post', 'post_id', $this->getId());
 	}
 
+	public function deletar() {
+		parent::$tabela = "post";
+		parent::$campoTabela = "post_id";
+		return parent::deletar();
+	}
+
 	public function cadastrar() {
 		$pdo = Conexao::getInstance();
 

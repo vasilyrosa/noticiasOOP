@@ -36,6 +36,12 @@ class Categoria extends Abstrata implements iCRUD{
 		return parent::listar();
 	}
 
+	public function deletar() {
+		parent::$tabela = "categoria";
+		parent::$campoTabela = "categoria_id";
+		return parent::deletar();
+	}
+
 	public function listarCategoria() {
 		parent::$tabela = "categoria";
 		parent::$existeParametros = true;

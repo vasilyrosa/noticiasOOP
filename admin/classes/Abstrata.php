@@ -58,7 +58,7 @@ abstract class Abstrata extends Conexao {
        $pdo = Conexao::getInstance();
 
         try {
-            $deletar = $pdo->prepare("DELETE FROM " . self::$tabela . " WHERE " .
+           $deletar = $pdo->prepare("DELETE FROM " . self::$tabela . " WHERE " .
                     self::$campoTabela . " = :id");
             $deletar->bindValue(":id", $this->getId());
             $deletar->execute();
