@@ -84,6 +84,7 @@ label{display: block}
 			<input type="hidden" name="id" value="<?php  echo $id; ?>" />
 			<label for="posicao_destaque" >Posição Destaque</label>
 			<select name="posicao" class="form-control">
+				<option value="0">Nehuma posição</option>
 				<?php
 					$posicao = new Posicao;
 					$dadosPosi = $posicao->listarPosicao();

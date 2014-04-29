@@ -1,4 +1,4 @@
- <?php
+﻿ <?php
  header ('Content-type: text/html; charset=UTF-8');
 include_once '../classes/lib/Pager.php';
 include_once '../classes/lib/Sliding.php';
@@ -56,7 +56,7 @@ label{display: block}
 
 				$params = array(
 				    'mode'       => 'sliding',
-				    'perPage'    => 10,
+				    'perPage'    => 5,
 				    'delta'      => 4,
 				    'itemData'   => $dados
 				);
@@ -69,7 +69,8 @@ label{display: block}
 					?>
 					<tr>
 						<td><?php  echo $value->categoria_nome; ?></td>
-						<td><?php  echo $value->posicao_nome; ?></td>
+						<td><?php  echo $value->categoria_posicao_destaque == 0?"Nehuma posição no site" :
+						 $value->posicao_nome; ?></td>
 						<td style="text-align: center">
 							<a href="?p=update/update_categoria&id=<?php echo $value->categoria_id ?>" class="glyphicon glyphicon-pencil"></a>
 						</td>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
  header ('Content-type: text/html; charset=UTF-8');
 include_once '../classes/lib/Pager.php';
 include_once '../classes/lib/Sliding.php';
@@ -88,7 +88,7 @@ label{display: block}
 					<tr>
 						<td><?php  echo $value->publicidade_titulo ?></td>
 						<td><?php  echo $value->publicidade_status ?></td>
-						<td style="width: 100px"><a href="?p=deletar_administrador&ac=deletar&id=<?php  echo $value->adm_id ?>"><button class="btn btn-danger">Deletar</button></a></td>
+						<td style="width: 100px"><a href="?p=deletar_publicidade&ac=deletar&id=<?php  echo $value->publicidade_id ?>"><button class="btn btn-danger">Deletar</button></a></td>
 					</tr>
 
 

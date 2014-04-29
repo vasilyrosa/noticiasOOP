@@ -3,12 +3,11 @@
 if(isset($_POST['cadastrar'])) {
 	$categoria = new Categoria();
 	$categoria->obrigatorio('categoria', $_POST['categoria']);
-	$categoria->obrigatorio('posição', $_POST['posicao']);
 
 	$erro =  $categoria->getErro();
 
  if(!isset($erro)){
- 	echo $categoria->setCategoria($_POST['categoria']);
+    $categoria->setCategoria($_POST['categoria']);
  	$categoria->setPosicao($_POST['posicao']);
  	$categoria->cadastrar();
  } else{
@@ -57,7 +56,7 @@ if(isset($_POST['cadastrar'])) {
 			<br>
 			<label for="posicao_destaque" >Posição Destaque</label>
 			<select name="posicao" class="form-control">
-				<option value="" seletcted="selected">Sem posição</option>
+				<option value="0" seletcted="selected">Sem posição</option>
 				<option value="1">Destaque</option>
 				<option value="2">Inferior direito</option>
 				<option value="3">Superior Esquerdo</option>

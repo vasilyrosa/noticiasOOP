@@ -110,7 +110,7 @@ position: relative;
 
         <li class="dropdown">
           <a href="#">
-            <i class="glyphicon glyphicon-user "></i><?php  echo '  Olรก '. $_SESSION['nome_adm'];  ?></a>
+            <i class="glyphicon glyphicon-user "></i><?php  echo '  Olá  '. $_SESSION['nome_adm'];  ?></a>
             <li><a href="?ac=logout"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
 
         </li>

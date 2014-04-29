@@ -36,7 +36,7 @@ if(isset($_GET['ac'])){
 }
 
 label{display: block}
-.panel-body{height: 330px; width: 800px;}
+.panel-body{height: 500px; width: 800px;}
 
 .panel-heading span {
 	margin-top: -20px;
@@ -76,7 +76,7 @@ label{display: block}
 				$dados = $p->listarPost();
 				$params = array(
 				    'mode'       => 'sliding',
-				    'perPage'    => 5,
+				    'perPage'    => 6,
 				    'delta'      => 4,
 				    'itemData'   => $dados
 				);

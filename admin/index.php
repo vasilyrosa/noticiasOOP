@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 require_once "autoload.php";
 
@@ -24,8 +24,7 @@ if(isset($_POST['ok'])){
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <title>Bootply.com - Bootstrap Bootstrap Login Form</title>
-        <title>http://bootstrapzero.com/bootstrap-template/sign-in</title>
+        <title>Página Administrativa</title>
         <meta name="generator" content="Bootply" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">

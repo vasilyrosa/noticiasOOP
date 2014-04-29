@@ -1,4 +1,4 @@
-<?php
+﻿<?php
  header ('Content-type: text/html; charset=UTF-8');
 include_once '../classes/lib/Pager.php';
 include_once '../classes/lib/Sliding.php';
@@ -71,7 +71,7 @@ label{display: block}
 				$dados = $cat->listarCategoria();
 				$params = array(
 				    'mode'       => 'sliding',
-				    'perPage'    => 5,
+				    'perPage'    => 4,
 				    'delta'      => 4,
 				    'itemData'   => $dados
 				);
@@ -82,8 +82,9 @@ label{display: block}
 					?>
 					<tr>
 						<td><?php  echo $value->categoria_nome ?></td>
-						<td><?php  echo $value->posicao_nome ?></td>
-						<td style="width: 100px"><a href="?p=deletar_categoria&ac=deletar&id=<?php  echo $value->categoria_id ?>"><i class="glyphicon glyphicon-remove"></i></a></td>
+						<td><?php  echo $value->categoria_posicao_destaque == 0 ?"Nehuma posição":
+						$value->posicao_nome ?></td>
+						<td style="width: 100px"><a href="?p=deletar_categoria&ac=deletar&id=<?php  echo $value->categoria_id ?>"><button class="btn btn-danger">Deletar</button></a></td>
 					</tr>
 
 

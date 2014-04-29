@@ -45,7 +45,7 @@ class Categoria extends Abstrata implements iCRUD{
 	public function listarCategoria() {
 		parent::$tabela = "categoria";
 		parent::$existeParametros = true;
-		$this->setParametros(" INNER JOIN posicao_destaque ON categoria.categoria_posicao_destaque = posicao_destaque.posicao_id");
+		$this->setParametros(" LEFT JOIN posicao_destaque ON categoria.categoria_posicao_destaque = posicao_destaque.posicao_id");
 		 return parent::listar();
 	}
 

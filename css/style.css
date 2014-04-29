@@ -1,0 +1,60 @@
+*{margin:0;padding:0;}
+body{font-family: "Trebuchet MS";}
+a{text-decoration: none;}
+#container{width: 1000px;margin: 0 auto;}
+
+#header{width: 1000px;}
+#header #logo{width: 318px;float: left;font-size: 36px;}
+#header #logo #sub{font-size: 19px;color: #FF0000;}
+#header #publicidade{width: 535px;float: right;margin-top: 3px;}
+#publicidade #titulo_publicidade{font-size: 12px;}
+
+#conteudo_pricipal{width: 1000px;margin-top: 20px;}
+#ultimas{width: 270px;float: left;margin-top: 10px;}
+#ultimas h1{width: 260px;float: left;color: #FF6600;font-size: 30px;font-weight: lighter;}
+#ultimas a{color:#333;}
+.noticias{width: 260px;position: relative;top: 20px;border-bottom: dotted 1px #ccc;padding: 10px 0;}
+.noticias h2{font-size: 14px;}
+.noticias p{font-size: 12px;margin: 5px 0;}
+.noticias .autor{font-size: 12px;color: #FF0000;}
+#destaques{width: 690px;float: right;margin-top: 10px;}
+#destaques a{color: #333;}
+#destaques #principal h1{font-size: 30px;color: #FF0000;font-weight: lighter;}
+#destaques .autor{font-size: 12px;color: #FF0000;}
+#destaques #principal{width: 690px;float: right;border-bottom: dotted 1px #ccc;padding-bottom: 25px;}
+#destaques #principal .foto_destaque{width: 280px;float: left;margin-top: 10px;}
+#destaques #principal .foto_destaque img{border: solid 2px #FF0000;}
+#destaques #principal .texto_destaque{width: 380px;float: right;font-size: 14px;margin-top: 10px;}
+#secundario{position: relative;top: 10px;clear: both;}
+#secundario .foto_destaque{width: 280px;float: left;margin-top: 10px;}
+#secundario .foto_destaque img{border: solid 2px #000;}
+#secundario .texto_destaque_secundario{width: 600px;font-size: 14px;margin-top: 10px;}
+#secundario h1{color: #FF0000;font-size: 30px;font-weight: lighter;}
+#secundario .autor{font-size: 12px;color: #FF0000;}
+#secundario #post_destaque_secundario{margin-bottom: 25px;}
+
+#categoria{width: 1000px;}
+#categoria a{color:#333;}
+#categoria h1{font-size: 30px;color: #FF0000;font-weight: lighter;}
+#categoria p{font-size: 14px;}
+#categoria .autor{font-size: 12px;color: #FF0000;}
+#categoria .posts_categoria{margin: 15px 0;}
+#categoria h2{font-size: 18px;}
+
+#post{width: 1000px;}
+#post h1{font-size: 26px;color: #333;font-weight: lighter;}
+#post p{font-size: 14px;}
+#post .autor{font-size: 14px;color: blue;}
+#post .posts_escolhido{margin: 15px 0;}
+#post h2{font-size: 18px;}
+
+
+
+.fix{clear: both;}
+#nav{width: 1000px;text-align: center;margin-top: 20px;}
+#nav ul{list-style: none;}
+#nav ul li{display: inline;margin: 0 5px;font-size: 31px;}
+#nav ul li:first-child{color: #FF0000;}
+#nav ul li a{text-decoration: none;color: #000;}
+#nav ul li a.first{color: #FF0000;}
+#footer{width: 1000px;text-align: center;font-size: 30px;clear: both;padding-top: 30px;}

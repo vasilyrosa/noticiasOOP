@@ -113,7 +113,7 @@ label{display: block}
 
 		<form action=""method="post" class="form-inline" enctype="multipart/form-data">
 			<label for="titulo">Titulo: </label>
-			<input style="width: 300px; "type="text" name="titulo"  class="form-control"  maxlength="80">
+			<input style="width: 470px; "type="text" name="titulo"  class="form-control"  maxlength="80">
 
 			<label for="categoria">Categoria:</label>
 			<select name="categoria" class="form-control">
